@@ -31,15 +31,18 @@ class Server(object):
             self.server.shutdown()
             del self.server
 
-    def init_mixer(self, identifier, file_path, loop=False, amp=0.1):
+    def init_mixer(self, identifier, file_path, loop=False, amp=0.1, channels=None):
         sf = pyo.SfPlayer(file_path, loop=loop)
         mixer = pyo.Mixer(outs=self.channels, chnls=1)
         mixer.addInput(0, sf)
         for o in range(self.channels):
             mixer.setAmp(0, o, amp)
-        mixer.out()
-        self.files[identifier] = sf
         self.mixers[identifier] = mixer
+        self.files[identifier] = sf
+        if channels is not None:
+            self.set_mixer(identifier, channels)
+        mixer.out()
+        sf.play()
 
     def set_mixer(self, identifier, channels):
         m = self.mixers[identifier]
