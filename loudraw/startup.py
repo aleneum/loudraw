@@ -4,12 +4,12 @@ from .api import start_app
 
 import cv2, sys
 
-if len(sys.argv) < 1:
+if len(sys.argv) < 2:
     print get_devices()
     sys.exit(0)
 
 output_size = 1000
-server = Server(idx=sys.argv[0])
+server = Server(idx=sys.argv[1])
 scaper = SoundScape(server.channels)
 
 app = start_app(scaper, server)
