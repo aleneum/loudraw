@@ -1,6 +1,6 @@
-from loudraw.server import Server
-from loudraw.imaging import SoundScape
-from loudraw.api import start_app
+from .server import Server
+from .imaging import SoundScape
+from .api import start_app
 
 import cv2
 

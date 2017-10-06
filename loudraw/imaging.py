@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from loudraw.object import DirectedSource, UndirectedSource
+from .object import DirectedSource, UndirectedSource
 
 HUE_ROT = 16
 HUE_CYCLE = 180
