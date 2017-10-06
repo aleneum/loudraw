@@ -9,7 +9,7 @@ if len(sys.argv) < 2:
     sys.exit(0)
 
 output_size = 1000
-server = Server(idx=sys.argv[1])
+server = Server(idx=int(sys.argv[1]))
 scaper = SoundScape(server.channels)
 
 app = start_app(scaper, server)
