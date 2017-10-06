@@ -1,11 +1,15 @@
-from .server import Server
+from .server import Server, get_devices
 from .imaging import SoundScape
 from .api import start_app
 
-import cv2
+import cv2, sys
+
+if len(sys.argv) < 1:
+    print get_devices()
+    sys.exit(0)
 
 output_size = 1000
-server = Server(idx=1)
+server = Server(idx=sys.argv[0])
 scaper = SoundScape(server.channels)
 
 app = start_app(scaper, server)
