@@ -12,7 +12,7 @@ output_size = 1000
 server = Server(idx=int(sys.argv[1]))
 scaper = SoundScape(server.channels)
 
-app = start_app(scaper, server)
+app = start_app(scaper, server, host="0.0.0.0")
 
 out = cv2.resize(scaper.get_sound_scape(), (output_size, output_size))
 cv2.imshow('image', out)

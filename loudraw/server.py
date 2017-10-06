@@ -18,7 +18,8 @@ class Server(object):
 
     def __init__(self, idx):
         self.channels = pyo.pa_get_output_max_channels(idx)
-        self.server = pyo.Server(nchnls=self.channels).boot()
+	print("self.channels", self.channels)
+        self.server = pyo.Server(nchnls=self.channels, ichnls=0).boot()
         self.server.start()
         self.mixers = {}
         self.files = {}

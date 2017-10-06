@@ -11,9 +11,9 @@ CREATE_UNDIRECTED_FIELDS = {
     'cx': (float, 0.0),
     'cy': (float, 0.0),
     'radius': (float, 0.2),
-    'blurx': (float, 0.2),
-    'blury': (float, 0.2),
-    'source': (str, "/Users/alneuman/notification.wav"),
+    'blurx': (float, 0.1),
+    'blury': (float, 0.1),
+    'source': (str, "/Users/amilab/forrest.wav"),
     'angle': (int, 10),
     'loop': (bool, True)
 }
@@ -81,7 +81,7 @@ class ObjectEditor(Resource):
         _flask_server.set_mixer(object_id, _flask_scaper.amp_from_image(o.canvas))
 
 
-def start_app(scaper, server, threaded=True):
+def start_app(scaper, server, threaded=True, host=None):
     global _flask_scaper, _flask_server, _flask_thread
     _flask_scaper = scaper
     _flask_server = server
@@ -92,7 +92,7 @@ def start_app(scaper, server, threaded=True):
     api.add_resource(ObjectEditor, '/set/<int:object_id>')
 
     if threaded:
-        _flask_thread = threading.Thread(target=app.run, kwargs=dict(debug=True, use_reloader=False))
+        _flask_thread = threading.Thread(target=app.run, kwargs=dict(debug=True, use_reloader=False, host=host))
         _flask_thread.start()
     else:
-        app.run(debug=True)
+        app.run(debug=True, host=host)
