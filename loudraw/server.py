@@ -16,9 +16,8 @@ def get_devices():
 
 class Server(object):
 
-    def __init__(self, idx):
-        self.channels = pyo.pa_get_output_max_channels(idx)
-	print("self.channels", self.channels)
+    def __init__(self, idx, channels=None):
+        self.channels = channels if channels is not None else pyo.pa_get_output_max_channels(idx)
         self.server = pyo.Server(nchnls=self.channels, ichnls=0).boot()
         self.server.start()
         self.mixers = {}

@@ -8,8 +8,10 @@ if len(sys.argv) < 2:
     print get_devices()
     sys.exit(0)
 
+
+ch = sys.argv[2] if len(sys.argv) > 2 else None
 output_size = 1000
-server = Server(idx=int(sys.argv[1]))
+server = Server(idx=int(sys.argv[1]), channels=ch)
 scaper = SoundScape(server.channels)
 
 app = start_app(scaper, server, host="0.0.0.0")
